@@ -1,0 +1,108 @@
+<%- include('../include/header.ejs') %>
+
+    <div class="container">
+        <div class="text-center fs-2 mt-3">Danh sánh sản phẩm</div>
+        <!-- Thêm/Search -->
+        <div class="mt-4 d-flex justify-content-between">
+            <a class="btn btn-primary col-md-2" href="../products/add">+Add Product</a>
+            <div class="col-md-6">
+                <form class="input-group" method="POST">
+                    <select name="id_category" class="form-control">
+                        <option value="">Category filter</option>
+                        <% listCategory.forEach(row => { %>
+                            <option value="<%= row._id %>"><%= row.name %></option>
+                        <% }); %>
+                    </select>
+                    <button class="btn btn-outline-secondary px-3" type="submit" id="button-addon2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- table -->
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">
+                        Price
+                        <!-- 
+                            ------?sort&column=name&type=-1------
+                            - sort: biết là chức năng gì
+                            - column: tên cột muốn sắp xếp trong bảng
+                            - type: 1, -1, tăng, giảm
+                         -->
+                        <%- include('../chucnang/sort.ejs', {chucnang: 'sort', column: 'price', type: type}) %>
+                    </th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sửa/Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i < listProduct.length; i++) { %>
+                    <tr>
+                        <th scope="row">
+                            <%= i + 1 %>
+                        </th>
+                        <td><a href="../products/details/<%= listProduct[i]._id %>" class="text-black">
+                                <%= listProduct[i].product_name %>
+                            </a></td>
+                        <td>
+                            <%= listProduct[i].description %>
+                        </td>
+                        <td>
+                            <%= listProduct[i].price %>$
+                        </td>
+                        <td>
+                            <img src="<%= listProduct[i].image %>" style="width: 150px;">
+                        </td>
+                        </a>
+                        </td>
+                        <td>
+                            <%= listProduct[i].id_category.name %>
+                        </td>
+                        <td>
+                            <a href="../products/edit/<%= listProduct[i]._id %>">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+
+                            <!-- Button gọi ra dialog để theo tác -->
+                            <a href="../products/delete/<%= listProduct[i]._id %>">
+                                <i class="fa-solid fa-trash text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+
+        <!-- Không có dữ liệu thì hiển thị text -->
+        <% if(listProduct.length == 0) { %>
+            <h1 class="text-danger">Không có dữ liệu</h1>
+        <% } %>
+
+        <!--  -->
+        <div class="d-flex justify-content-between">
+            <h3><%= listProduct.length %>/100</h3>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <span class="page-link">Back</span>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" aria-current="page">
+                        <span class="page-link">2</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <%- include('../include/footer.ejs') %>

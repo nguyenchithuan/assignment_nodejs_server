@@ -1,0 +1,53 @@
+<%- include('../include/header.ejs') %>
+
+    <div class="d-flex justify-content-center">
+        <div class="bg-white rounded border shadow-lg" style="width: 600px; margin: 100px; padding: 40px;">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3>Edit sản phẩm</h3>
+                </div>
+                <!-- NameProduct -->
+                <div class="mb-3 row align-items-center">
+                    <label for="Email" class="col-md-3">Name Product</label>
+                    <input type="text" name="name" value="<%= objSp.product_name %>" class="col-md-9 px-3 py-1" placeholder="Enter name product">
+                </div>
+                <!-- Description -->
+                <div class="mb-3 row align-items-center">
+                    <label for="Email" class="col-md-3">Description</label>
+                    <textarea type="text" rows="4" name="description" class="col-md-9 px-3 py-1" 
+                    placeholder="Enter description"><%= objSp.description %></textarea>
+                </div>
+                <!-- Price -->
+                <div class="mb-3 row align-items-center">
+                    <label for="exampleInputPassword1" class="col-md-3">Price</label>
+                    <input type="number" name="price" value="<%= objSp.price %>" class="col-md-9 px-3 py-1" placeholder="Enter price">
+                </div>
+                <!-- Image -->
+                <div class="mb-3 row align-items-center">
+                    <label for="exampleInputPassword1" class="col-md-3">Image</label>
+                    <input type="file" name="image" value="<%= objSp.image %>" class="col-md-9 px-3 py-1" placeholder="Enter image">
+                </div>
+                <!-- Category -->
+                <div class="mb-3 row align-items-center">
+                    <label for="exampleInputPassword1 col" class="col-md-3">Type</label>
+                    <select class="col-md-4 p-1" name="id_category">
+                        <% listCategory.forEach(row => { 
+                            let selected = '';
+                            if(String(objSp.id_category) == String(row._id)) {
+                                selected='selected';
+                            }
+                            %>
+                            <option <%= selected %> value="<%= row._id %>"><%= row.name %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <h6 class="text-warning"><%= msg %></h6>
+                <!-- Submit -->
+                <div class="row">
+                    <button type="submit" class="btn mt-2 col-12" style="background-color: #F68F7B; color: white;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../include/footer.ejs') %>

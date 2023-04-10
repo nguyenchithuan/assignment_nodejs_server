@@ -1,0 +1,28 @@
+<%- include('../include/header.ejs') %>
+
+    <div class="d-flex justify-content-center ">
+        <div class="bg-dark rounded border shadow-lg" style="width: 550px; margin: 100px; padding: 40px;">
+            <form method="POST">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h3 class="text-white">Đăng nhập</h3>
+                </div>
+                <!-- Email -->
+                <div class="mb-3 row align-items-center">
+                    <label for="Username" class="col-md-3 text-white">Username</label>
+                    <input type="text" name="username" class="col-md-9 px-3 py-1" placeholder="Enter email">
+                </div>
+                <!-- Password -->
+                <div class="mb-3 row align-items-center">
+                    <label for="exampleInputPassword1" class="col-md-3 text-white">Password</label>
+                    <input type="password" name="password" class="col-md-9 px-3 py-1" placeholder="Enter password">
+                </div>
+                <h6 class="text-warning"><%= msg %></h6>
+                <!-- Login -->
+                <div class="row">
+                    <button type="submit" class="btn mt-2 col-12 border-1 border-white" style="color: white;">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../include/footer.ejs') %>

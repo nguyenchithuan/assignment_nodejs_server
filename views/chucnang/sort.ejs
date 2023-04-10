@@ -1,0 +1,13 @@
+<% if(type == -1) { %>
+    <a href="?<%= chucnang %>&column=<%= column %>&type=1">
+        <i class="fa-solid fa-sort"></i>
+    </a>
+<% } else if(type == 1) {%>
+    <a href="?<%= chucnang %>&column=<%= column %>&type=-1">
+        <i class="fa-solid fa-sort"></i>
+    </a>
+<%} else {%>
+    <a href="?<%= chucnang %>&column=<%= column %>&type=-1">
+        <i class="fa-solid fa-sort"></i>
+    </a>
+<%} %>

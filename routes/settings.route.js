@@ -14,5 +14,6 @@ router.post('/login', settingsController.login);
 router.get('/register', settingsController.register);
 router.post('/register', uploader.single('avata'), settingsController.register);
 
+router.get('/logout', settingsController.logout);
 
 module.exports = router;

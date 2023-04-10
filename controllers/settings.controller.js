@@ -56,3 +56,9 @@ exports.register = async (req, res, next) => {
     res.render('settings/register.ejs', {msg});
 }
 
+// Đăng xuất
+exports.logout = async (req, res, next) => {
+    req.session.accountLogin = null;
+    res.redirect('../../');
+}
+

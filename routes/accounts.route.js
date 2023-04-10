@@ -7,7 +7,7 @@ var uploader = multer({ dest: '.tmp' }); // đưa vào thư mục tạm, để c
 var login = require('../middlewares/login');
 
 // thiết lập bắt buộc phải login
-// router.use(login.check_login);
+router.use(login.check_login);
 
 // List account
 router.get('/', accountsController.list);

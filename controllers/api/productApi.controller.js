@@ -1,6 +1,7 @@
 var md = require('../../models/products.model');
 
 exports.list = async (req, res, next) => {
+    console.log();
     try {
         let listSp = await md.productModel.find().populate('id_category');
         if (listSp) {

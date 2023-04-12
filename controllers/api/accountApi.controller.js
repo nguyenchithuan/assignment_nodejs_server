@@ -1,4 +1,5 @@
 var accountModel = require('../../models/accounts.model');
+var bcrypt = require('bcrypt');
 
 exports.listUser = async (req, res, next) => {
     try {
@@ -33,7 +34,6 @@ exports.login = async (req, res, next) => {
 
 exports.reg = async (req, res, next) => {
     try {
-
         const user = new accountModel(req.body);
         const salt = await bcrypt.genSalt(15);
         user.password = await bcrypt.hash(req.body.password, salt);
